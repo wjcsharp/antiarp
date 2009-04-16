@@ -50,7 +50,7 @@ Source: "..\Release\WonArp.sys";       DestDir: "{app}"; Flags: ignoreversion  d
 
 
 [Icons]
-Name: "{group}\Íæ»ð AntiArp"; Filename: "{app}\WonFW.exe.exe"
+Name: "{group}\Íæ»ð AntiArp"; Filename: "{app}\WonFW.exe"
 Name: "{commondesktop}\Íæ»ð AntiArp"; Filename: "{app}\WonFW.exe"; Tasks: desktopicon
 
 [Registry]
