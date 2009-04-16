@@ -19,7 +19,7 @@ static char THIS_FILE[] = __FILE__;
 // CWonArpFWDlg dialog
 
 CWonArpFWDlg::CWonArpFWDlg(CWnd* pParent /*=NULL*/)
-	: CNewDialog(CWonArpFWDlg::IDD, pParent)
+   : CNewDialog(CWonArpFWDlg::IDD, pParent), m_bAttachNow(FALSE)
 {
 	//{{AFX_DATA_INIT(CWonArpFWDlg)
 	//}}AFX_DATA_INIT
@@ -116,6 +116,8 @@ BOOL CWonArpFWDlg::OnInitDialog()
 	CThread::CreateThread(AttachPacketNotify,this);
 
 	m_trayicon.Create(this,WM_TRAYICON,"玩火 AntiARP",m_hIcon,5000);
+
+	SetTimer(MODIFY_SHELLICON_TIMER,2000,NULL);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -564,6 +566,8 @@ void CWonArpFWDlg::NotifyPacketWork()
 			case GATEWAY_ARP_QUERY_ATTACH:
 			case GATEWAY_ARP_REPLY_ATTACH:
 
+				m_bAttachNow = TRUE;
+
 				//将状态栏图标改变为红色
 				m_trayicon.SetIcon(IDI_ARP_DISABLE);
 
@@ -583,6 +587,8 @@ void CWonArpFWDlg::NotifyPacketWork()
 			case LAN_SAMEIP_ATTACH:
 			case WAN_SAMEIP_ATTACH:
 
+				m_bAttachNow = TRUE;
+
 				//将状态栏图标改变为红色
 				m_trayicon.SetIcon(IDI_ARP_DISABLE);
 
@@ -600,6 +606,8 @@ void CWonArpFWDlg::NotifyPacketWork()
 				
 				break;
 			case WRONG_PROTOCOL_ATTACH:
+
+				m_bAttachNow = TRUE;
 
 				//将状态栏图标改变为红色
 				m_trayicon.SetIcon(IDI_ARP_DISABLE);
@@ -636,6 +644,18 @@ void CWonArpFWDlg::OnTimer(UINT nIDEvent)
 			ShowWindow(SW_HIDE);
 			KillTimer(nIDEvent);
 			break;
+		}
+	case MODIFY_SHELLICON_TIMER:
+		{
+			if(m_bAttachNow)
+			{
+				m_trayicon.SetIcon(IDI_ARP_DISABLE);
+			}
+			else
+			{
+				m_trayicon.SetIcon(IDI_ARP_ENABLE);
+			}
+			
 		}
 	default:
 		break;

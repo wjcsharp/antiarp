@@ -319,6 +319,14 @@ SOURCE=.\res\TabNotFocus.jpg
 
 SOURCE=.\res\trayicon.ico
 # End Source File
+# Begin Source File
+
+SOURCE=.\res\WonArpFW.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\WonArpFW2.ico
+# End Source File
 # End Group
 # Begin Source File
 

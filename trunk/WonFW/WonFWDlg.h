@@ -8,7 +8,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#define	AUTO_HIDE_TIME		10
+#define	AUTO_HIDE_TIME			10
+#define MODIFY_SHELLICON_TIMER  8
 
 #define WM_TRAYICON			WM_USER + 113
 #define WM_SHOWLOG			WM_USER + 114
@@ -97,6 +98,8 @@ private:
 	HANDLE		m_Notify_Thread_Work_Event;
 
 	ULONG		m_show_id;
+
+	BOOL		m_bAttachNow;
 
 };
 
