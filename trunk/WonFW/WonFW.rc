@@ -1,0 +1,298 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\WonArpFW.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAIN_ICO            ICON    DISCARDABLE     "res\\WonArpFW.ico"
+IDI_ARP_DISABLE         ICON    DISCARDABLE     "res\\WonArpFW2.ico"
+IDI_ARP_ENABLE          ICON    DISCARDABLE     "res\\Trayicon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WONARPFW_DIALOG DIALOGEX 0, 0, 427, 267
+STYLE WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "玩火 AntiArp"
+FONT 9, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "监控状态",IDB_STATE,4,73,90,17
+    PUSHBUTTON      "综合设置",IDB_SETUP,94,73,90,17
+    PUSHBUTTON      "监控日志",IDB_LOG,184,73,90,17
+    LTEXT           "当前版本:",IDC_STATIC,286,75,37,8
+    LTEXT           "1.0.0.0Beta",IDC_CURRENT_VERSION,323,75,45,8
+    CONTROL         "",IDC_CHILD_FRAME,"Static",SS_GRAYFRAME,4,89,420,174
+END
+
+IDD_STATE DIALOG DISCARDABLE  0, 0, 417, 171
+STYLE WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    GROUPBOX        "系统监控状态",IDC_STATIC,5,9,407,82
+    LTEXT           "当前安全等级指示",IDC_STATIC,18,24,65,8
+    GROUPBOX        "网关信息",IDC_STATIC,5,100,200,63
+    LTEXT           "当前网关",IDC_STATIC,23,113,33,8
+    LTEXT           "网关MAC",IDC_STATIC,109,113,32,8
+    GROUPBOX        "本机信息",IDC_STATIC,216,100,196,63
+    LTEXT           "本机地址",IDC_STATIC,233,113,33,8
+    LTEXT           "本机MAC",IDC_STATIC,318,113,29,8
+    LTEXT           "未启用任何保护措施",IDC_STATE_TEXT,22,38,123,8
+    LTEXT           "外部攻击包:",IDC_EXTERN_TEXT,146,24,53,8
+    LTEXT           "对外攻击包:",IDC_INTERNAL_TEXT,146,49,53,8
+    LTEXT           "上次攻击时间:",IDC_LASTTIME_TEXT,146,72,53,8
+    LTEXT           "上次攻击源主机:",IDC_LAST_PC_TEXT,278,24,60,8
+    LTEXT           "上次攻击源IP:",IDC_LAST_IP_TEXT,278,49,60,8
+    LTEXT           "上次攻击源MAC:",IDC_LAST_MAC_TEXT,278,72,56,8
+    CONTROL         138,IDC_SAFE_LEVEL,"Static",SS_BITMAP,10,67,129,14
+    LTEXT           "低",IDC_LEVEL_LOW_TEXT,11,53,9,8
+    LTEXT           "高",IDC_LEVEL_HIGH_TEXT,130,53,9,8
+    CONTROL         141,IDC_LEVEL_SLIDER,"Static",SS_BITMAP,23,51,103,11
+    LTEXT           "0",IDC_EXTERN,199,24,72,8
+    LTEXT           "0",IDC_INTERNAL,199,49,72,8
+    LTEXT           "N/A",IDC_LAST_TIME,199,72,77,8
+    LTEXT           "N/A",IDC_LAST_MAC,337,72,71,8
+    LTEXT           "N/A",IDC_LAST_IP,338,49,69,8
+    LTEXT           "N/A",IDC_LAST_PC,338,24,67,8
+    CONTROL         "List1",IDC_GATEWAY_ADDRESS,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_NOSCROLL | LVS_NOCOLUMNHEADER | 
+                    LVS_NOSORTHEADER,19,125,173,31
+    CONTROL         "List2",IDC_LOCAL_ADDRESS,"SysListView32",LVS_REPORT | 
+                    LVS_NOSCROLL | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER,229,
+                    125,169,31
+END
+
+IDD_SETUP DIALOG DISCARDABLE  0, 0, 417, 171
+STYLE WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    CONTROL         "开启ARP攻击弹出通知",IDC_POPUP_NOTIFY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,129,29,92,10
+    CONTROL         "开机自动运行",IDC_SYSTEM_START,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,236,29,64,10
+    PUSHBUTTON      "启用",IDC_SETUP_USE,337,27,50,14
+    CONTROL         "拦截外部IP冲突攻击",IDC_ANTI_SAMEIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,129,81,88,10
+    CONTROL         "拦截本机对外ARP攻击",IDC_SEND_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,236,81,92,10
+    PUSHBUTTON      "启用",IDC_ANTI_USE,337,79,50,14
+    PUSHBUTTON      "导入设置",IDC_IMPORT_CONFIG,243,132,50,14
+    PUSHBUTTON      "导出设置",IDC_EXPORT_CONFIG,337,132,50,14
+    GROUPBOX        "抵御攻击设置",IDC_STATIC,14,64,391,39
+    CONTROL         "拦截外部网关欺骗攻击",IDC_ANTI_GATEWAY,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED,32,81,96,10
+    GROUPBOX        "系统设置",IDC_STATIC,14,11,391,40
+    GROUPBOX        "系统配置",IDC_STATIC,14,115,391,41
+    CONTROL         "启用网关智能识别",IDC_AUTO_MAC,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,32,29,80,10
+    LTEXT           "导入或者导出配置参数文件",IDC_STATIC,32,135,97,8
+END
+
+IDD_LOG DIALOG DISCARDABLE  0, 0, 417, 171
+STYLE WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    CONTROL         "List1",IDC_LOG_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_NOSORTHEADER | WS_BORDER,7,8,403,138
+    PUSHBUTTON      "查看历史记录",IDC_LOOK_LOG_FILE,355,150,56,17
+    DEFPUSHBUTTON   "清空当前记录",IDC_CLEAR_LOGVIEW,289,150,56,17
+    LTEXT           "当前攻击记录数:",IDC_LOGVIEW_COUNT_TEXT,10,154,61,8
+    LTEXT           "0",IDC_LOGVIEW_COUNT,75,154,39,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "Debugman.com\0"
+            VALUE "FileDescription", "玩火 AntiArp For 2000/XP/2003/Vista/2008\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "WonFW\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2009 Debugman.com.\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "WonFW.EXE\0"
+            VALUE "ProductName", "玩火 AntiArp\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_STATE, DIALOG
+    BEGIN
+        VERTGUIDE, 199
+    END
+
+    IDD_SETUP, DIALOG
+    BEGIN
+        VERTGUIDE, 14
+        VERTGUIDE, 32
+        VERTGUIDE, 129
+        VERTGUIDE, 236
+        VERTGUIDE, 362
+        VERTGUIDE, 405
+        HORZGUIDE, 34
+        HORZGUIDE, 84
+        HORZGUIDE, 139
+    END
+
+    IDD_LOG, DIALOG
+    BEGIN
+        HORZGUIDE, 158
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BACKMAP             BITMAP  DISCARDABLE     "res\\Backmap.bmp"
+IDB_TABNOTFOCUS         BITMAP  DISCARDABLE     "res\\TabNotFocus.bmp"
+IDB_TABFOCUS            BITMAP  DISCARDABLE     "res\\TabFocus.bmp"
+IDB_SAFE_LEVEL_1        BITMAP  DISCARDABLE     "res\\SafeLevel_1.bmp"
+IDB_SAFE_LEVEL_0        BITMAP  DISCARDABLE     "res\\SafeLevel_0.bmp"
+IDB_SAFE_LEVEL_2        BITMAP  DISCARDABLE     "res\\SafeLevel_2.bmp"
+IDB_SAFE_LEVEL_3        BITMAP  DISCARDABLE     "res\\SafeLevel_3.bmp"
+IDB_SLIDER_0            BITMAP  DISCARDABLE     "res\\Slider_0.bmp"
+IDB_SLIDER_1            BITMAP  DISCARDABLE     "res\\Slider_1.bmp"
+IDB_SLIDER_2            BITMAP  DISCARDABLE     "res\\Slider_2.bmp"
+IDB_SLIDER_3            BITMAP  DISCARDABLE     "res\\Slider_3.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "玩火 AntiArp(&A)..."
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\WonArpFW.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
