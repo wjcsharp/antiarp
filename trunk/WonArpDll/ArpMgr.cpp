@@ -6,7 +6,7 @@
 #include <iphlpapi.h>
 #include <tchar.h>
 #include "ArpMgr.h"
-#include "../WonArp/Share.h"
+#include "../WonArp5/Share.h"
 #include "../WonArp6/Share60.h"
 
 #pragma comment(lib,"ws2_32.lib")
