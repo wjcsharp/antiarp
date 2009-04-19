@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="gb2312"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="WonArp6Driver"
+	ProjectGUID="{6C1A9916-1789-45CD-B648-1A825E31143D}"
+	RootNamespace="WonArp6"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="WLH free|Win32"
+			IntermediateDirectory=".\"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\WonArp6.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(DDKBUILD_PATH) -WLH free ."
+				ReBuildCommandLine="$(DDKBUILD_PATH) -WLH free . -cZ"
+				CleanCommandLine=""
+				Output=""
+				PreprocessorDefinitions="DBG=0;WINVER=0x0600;NTDDI_VERSION=0x06000000"
+				IncludeSearchPath="$(WLHBASE)\inc\ddk\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="WLH checked|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory=".\"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\WonArp6.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(DDKBUILD_PATH) -WLH checked ."
+				ReBuildCommandLine="$(DDKBUILD_PATH) -WLH checked . -cZ"
+				CleanCommandLine=""
+				Output=""
+				PreprocessorDefinitions="DBG=1;WINVER=0x0600;NTDDI_VERSION=0x06000000"
+				IncludeSearchPath="$(WLHBASE)\inc\ddk\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="WLH2K free|Win32"
+			IntermediateDirectory=".\"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\WonArp6.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(DDKBUILD_PATH) -WLH2K free ."
+				ReBuildCommandLine="$(DDKBUILD_PATH) -WLH2K free . -cZ"
+				CleanCommandLine=""
+				Output=""
+				PreprocessorDefinitions="DBG=0;WINVER=0x0500;NTDDI_VERSION=0x05000400"
+				IncludeSearchPath="$(WLHBASE)\inc\ddk\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="WLH2K checked|Win32"
+			IntermediateDirectory=".\"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\WonArp6.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(DDKBUILD_PATH) -WLH2K checked ."
+				ReBuildCommandLine="$(DDKBUILD_PATH) -WLH2K checked . -cZ"
+				CleanCommandLine=""
+				Output=""
+				PreprocessorDefinitions="DBG=1;WINVER=0x0500;NTDDI_VERSION=0x05000400"
+				IncludeSearchPath="$(WLHBASE)\inc\ddk\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="WLHXP free|Win32"
+			IntermediateDirectory=".\"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\WonArp6.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(DDKBUILD_PATH) -WLHXP free ."
+				ReBuildCommandLine="$(DDKBUILD_PATH) -WLHXP free . -cZ"
+				CleanCommandLine=""
+				Output=""
+				PreprocessorDefinitions="DBG=0;WINVER=0x0501;NTDDI_VERSION=0x05010200"
+				IncludeSearchPath="$(WLHBASE)\inc\ddk\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="WLHXP checked|Win32"
+			IntermediateDirectory=".\"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\WonArp6.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(DDKBUILD_PATH) -WLHXP checked ."
+				ReBuildCommandLine="$(DDKBUILD_PATH) -WLHXP checked . -cZ"
+				CleanCommandLine=""
+				Output=""
+				PreprocessorDefinitions="DBG=1;WINVER=0x0501;NTDDI_VERSION=0x05010200"
+				IncludeSearchPath="$(WLHBASE)\inc\ddk\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="WLHNET free|Win32"
+			IntermediateDirectory=".\"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\WonArp6.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(DDKBUILD_PATH) -WLHNET free ."
+				ReBuildCommandLine="$(DDKBUILD_PATH) -WLHNET free . -cZ"
+				CleanCommandLine=""
+				Output=""
+				PreprocessorDefinitions="DBG=0;WINVER=0x0502;NTDDI_VERSION=0x05020100"
+				IncludeSearchPath="$(WLHBASE)\inc\ddk\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="WLHNET checked|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory=".\"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\WonArp6.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(DDKBUILD_PATH) -WLHNET checked ."
+				ReBuildCommandLine="$(DDKBUILD_PATH) -WLHNET checked . -cZ"
+				CleanCommandLine=""
+				Output=""
+				PreprocessorDefinitions="DBG=1;WINVER=0x0502;NTDDI_VERSION=0x05020100"
+				IncludeSearchPath="$(WLHBASE)\inc\ddk\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;def;asm;mc"
+			>
+			<File
+				RelativePath=".\device.c"
+				>
+			</File>
+			<File
+				RelativePath=".\filter.c"
+				>
+			</File>
+			<File
+				RelativePath=".\flt_dbg.c"
+				>
+			</File>
+			<File
+				RelativePath=".\GatewayCheck.c"
+				>
+			</File>
+			<File
+				RelativePath=".\ioctrl.c"
+				>
+			</File>
+			<File
+				RelativePath=".\Packet.c"
+				>
+			</File>
+			<File
+				RelativePath=".\SendRecv.c"
+				>
+			</File>
+			<File
+				RelativePath=".\UserShareEvent.c"
+				>
+			</File>
+			<File
+				RelativePath=".\UserShareMemory.c"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx"
+			>
+			<File
+				RelativePath=".\filter.h"
+				>
+			</File>
+			<File
+				RelativePath=".\filteruser.h"
+				>
+			</File>
+			<File
+				RelativePath=".\flt_dbg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\GatewayCheck.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Packet.h"
+				>
+			</File>
+			<File
+				RelativePath=".\precomp.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Share60.h"
+				>
+			</File>
+			<File
+				RelativePath=".\struct.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UserShareEvent.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UserShareMemory.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;mc;ico;cur;bmp;dlg;rc2"
+			>
+			<File
+				RelativePath=".\WonArp6.rc"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Special Files"
+			Filter="*"
+			>
+			<File
+				RelativePath=".\makefile"
+				>
+			</File>
+			<File
+				RelativePath=".\sources"
+				>
+			</File>
+			<File
+				RelativePath=".\WonArp6.vsprops"
+				>
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
