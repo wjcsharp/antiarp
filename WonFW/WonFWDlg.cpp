@@ -312,7 +312,7 @@ void CWonArpFWDlg::GatewayThread(void *pParam)
 
 void CWonArpFWDlg::GatewayWork()
 {
-	TCHAR   strText[256];
+	TCHAR   strText[MAX_PATH];
 
 	UCHAR	GatewayMac[6]	= { 0,0,0,0,0,0};
 	HRESULT hResult			= S_FALSE;
@@ -332,6 +332,7 @@ ReWork:
 			Sleep(1000);
 			goto ReWork;
 		}
+
 		while(Items)
 		{
 			if( Items->AdapterType == MIB_IF_TYPE_OTHER		||
@@ -356,14 +357,14 @@ ReWork:
 			}
 			
 			//设置界面显示
-			sprintf(strText,"%d.%d.%d.%d",
+			_stprintf_s(strText,MAX_PATH,"%d.%d.%d.%d",
 				Items->IPAddress[0],Items->IPAddress[1],Items->IPAddress[2],Items->IPAddress[3]);
 
 			iItem = g_state_dlg.m_local_address.InsertItem(g_state_dlg.m_local_address.GetItemCount() + 1,strText);
 			
 			if(iItem != -1)
 			{
-				sprintf(strText,_T("%02X-%02X-%02X-%02X-%02X-%02X"),
+				_stprintf_s(strText,MAX_PATH,_T("%02X-%02X-%02X-%02X-%02X-%02X"),
 						Items->IPAddressMac[0],Items->IPAddressMac[1],
 						Items->IPAddressMac[2],Items->IPAddressMac[3],
 						Items->IPAddressMac[4],Items->IPAddressMac[5]);
@@ -374,7 +375,8 @@ ReWork:
 
 			if(GatewayAddress)
 			{
-				sprintf(strText,"%d.%d.%d.%d",Items->GatewayIP[0],Items->GatewayIP[1],Items->GatewayIP[2],Items->GatewayIP[3]);
+				_stprintf_s(strText,MAX_PATH,"%d.%d.%d.%d",
+					Items->GatewayIP[0],Items->GatewayIP[1],Items->GatewayIP[2],Items->GatewayIP[3]);
 				iItem = g_state_dlg.m_gateway_address.InsertItem(
 							g_state_dlg.m_gateway_address.GetItemCount() + 1,strText);
 				if(iItem != -1)
@@ -386,7 +388,7 @@ ReWork:
 				if(memcmp(Items->GatewayIP,Items->IPAddress,4) == 0)
 				{
 					memcpy(GatewayMac,Items->IPAddressMac,6);
-					sprintf(strText,_T("%02X-%02X-%02X-%02X-%02X-%02X"),
+					_stprintf_s(strText,MAX_PATH,_T("%02X-%02X-%02X-%02X-%02X-%02X"),
 							Items->IPAddressMac[0],Items->IPAddressMac[1],Items->IPAddressMac[2],
 							Items->IPAddressMac[3],Items->IPAddressMac[4],Items->IPAddressMac[5]);
 					if(iItem != -1)
@@ -413,12 +415,12 @@ ReWork:
 							g_ArpMgr->RemoveSafeWanInfo();
 							
 							goto ReWork;
-
 						}
 
 						g_ArpMgr->RenewGatewayMac(GatewayAddress);
 
-						sprintf(strText,_T("%02X-%02X-%02X-%02X-%02X-%02X"),GatewayMac[0],GatewayMac[1],GatewayMac[2],GatewayMac[3],GatewayMac[4],GatewayMac[5]);
+						_stprintf_s(strText,MAX_PATH,_T("%02X-%02X-%02X-%02X-%02X-%02X"),
+							GatewayMac[0],GatewayMac[1],GatewayMac[2],GatewayMac[3],GatewayMac[4],GatewayMac[5]);
 						if(iItem != -1)
 						{
 							g_state_dlg.m_gateway_address.SetItemText(iItem,1,strText);
@@ -447,7 +449,8 @@ ReWork:
 
 						g_ArpMgr->RenewGatewayMac(GatewayAddress);
 
-						sprintf(strText,_T("%02X-%02X-%02X-%02X-%02X-%02X"),GatewayMac[0],GatewayMac[1],GatewayMac[2],GatewayMac[3],GatewayMac[4],GatewayMac[5]);
+						_stprintf_s(strText,MAX_PATH,_T("%02X-%02X-%02X-%02X-%02X-%02X"),
+							GatewayMac[0],GatewayMac[1],GatewayMac[2],GatewayMac[3],GatewayMac[4],GatewayMac[5]);
 						if(iItem != -1)
 						{
 							g_state_dlg.m_gateway_address.SetItemText(iItem,1,strText);
@@ -487,8 +490,7 @@ ReWork:
 
 			bHaveGateway = FALSE;
 			
-			goto ReWork;
-			
+			goto ReWork;			
 		}
 
 		if(m_Config->ANTIGATEWAY)
@@ -518,7 +520,6 @@ ReWork:
 		InitObjects();
 		goto ReWork;
 	}
-
 }
 
 void CWonArpFWDlg::AttachPacketNotify(void* pParam)
@@ -571,7 +572,7 @@ void CWonArpFWDlg::NotifyPacketWork()
 				//将状态栏图标改变为红色
 				m_trayicon.SetIcon(IDI_ARP_DISABLE);
 
-				_tcscpy(szAttachType,TEXT("网关欺骗"));
+				_tcscpy_s(szAttachType,TEXT("网关欺骗"));
 
 				wsprintf(szSrcAddr,TEXT("%02X-%02X-%02X-%02X-%02X-%02X"),
 					NotifyPacket.ArpPacket.SrcAddr[0],
@@ -592,7 +593,7 @@ void CWonArpFWDlg::NotifyPacketWork()
 				//将状态栏图标改变为红色
 				m_trayicon.SetIcon(IDI_ARP_DISABLE);
 
-				_tcscpy(szAttachType,TEXT("IP冲突"));
+				_tcscpy_s(szAttachType,TEXT("IP冲突"));
 				
 				wsprintf(szSrcAddr,TEXT("%02X-%02X-%02X-%02X-%02X-%02X"),
 					NotifyPacket.ArpPacket.SrcAddr[0],
@@ -612,7 +613,7 @@ void CWonArpFWDlg::NotifyPacketWork()
 				//将状态栏图标改变为红色
 				m_trayicon.SetIcon(IDI_ARP_DISABLE);
 
-				_tcscpy(szAttachType,TEXT("错误协议"));
+				_tcscpy_s(szAttachType,TEXT("错误协议"));
 				
 				wsprintf(szSrcAddr,TEXT("%02X-%02X-%02X-%02X-%02X-%02X"),
 					NotifyPacket.ArpPacket.SrcAddr[0],

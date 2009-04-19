@@ -50,7 +50,7 @@ BOOL CTrayIcon::Create(CWnd* pParent,UINT uCallbackMessage,LPCTSTR szToolTip,HIC
 	m_tnd.hIcon  = icon;
 	m_tnd.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP ;
 	m_tnd.uCallbackMessage = uCallbackMessage;
-	_tcscpy(m_tnd.szTip,szToolTip);
+	_tcscpy_s(m_tnd.szTip,szToolTip);
 
 	m_bEnabled = Shell_NotifyIcon(NIM_ADD,&m_tnd);
 	ASSERT(m_bEnabled);

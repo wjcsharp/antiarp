@@ -169,7 +169,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../Debug/WonArp.dll"
+				OutputFile="../Bin/WonArp.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\WonArp.def"

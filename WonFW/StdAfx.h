@@ -10,7 +10,12 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+//////////////////////////////////////////////////////////////////////////
+
 //#define WINVER 0x0500
+#define DBGTestGUI 1
+
+//////////////////////////////////////////////////////////////////////////
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
 
@@ -24,6 +29,7 @@
 #include <Winsock2.h>
 #include "iphlpapi.h"
 #include <windows.h>
+#include <stdio.h>
 #pragma comment(lib,"iphlpapi.lib")
 
 #include "NewMenu\NewMenu.h"

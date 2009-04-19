@@ -233,14 +233,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MPWONARP.inf"
-				>
-			</File>
-			<File
-				RelativePath=".\PTWONARP.inf"
-				>
-			</File>
-			<File
 				RelativePath=".\sources"
 				>
 			</File>

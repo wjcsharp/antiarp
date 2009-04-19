@@ -196,7 +196,7 @@ void CLogDlg::QueryIPInfoWork()
 				KnownItem->IPAddress  = NameItem->IPAddress;
 
 #ifdef _MBCS
-				_tcscpy(KnownItem->szHostName,host->h_name);
+				_tcscpy_s(KnownItem->szHostName,host->h_name);
 #else
 				MultiByteToWideChar(CP_ACP,0,host->h_name,-1,KnownItem->szHostName,MAX_PATH);
 #endif
@@ -393,7 +393,7 @@ void CLogDlg::InsertLog(TCHAR*	LogTime,
 				{
 					if(NameItem->IPAddress == IPAddress)
 					{
-						_tcscpy(AttachPCName,NameItem->szHostName);
+						_tcscpy_s(AttachPCName,NameItem->szHostName);
 						FindName = TRUE;
 						break;
 					}
@@ -540,7 +540,7 @@ void CLogDlg::InsertLog(TCHAR*	LogTime,
 			{
 				if(NameItem->IPAddress == IPAddress)
 				{
-					_tcscpy(AttachPCName,NameItem->szHostName);
+					_tcscpy_s(AttachPCName,NameItem->szHostName);
 					FindName = TRUE;
 					break;
 				}
@@ -654,7 +654,7 @@ void CLogDlg::InsertLog(TCHAR*	LogTime,
 		}
 	}
 
-	sprintf(logcount,TEXT("%d"),m_record_count);
+	_stprintf_s(logcount,MAX_PATH,TEXT("%d"),m_record_count);
 	m_logview_count.SetWindowText(logcount);
 
 }

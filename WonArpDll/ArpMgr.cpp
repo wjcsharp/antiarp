@@ -73,7 +73,6 @@ CArpMgr::CArpMgr()
 		default:
 			break;
 	}
-
 }
 
 CArpMgr::~CArpMgr()
@@ -296,7 +295,7 @@ STDMETHODIMP CArpMgr::GetIPInfo(PNETCARD_ITEM* Items)
 	IP_ADDR_STRING*		pIPAddressList		= NULL;
 	IP_ADDR_STRING*		pGatewayList		= NULL;
 
-	char				NetcardDeviceName[MAX_PATH];
+	char				NetcardDeviceName[MAX_PATH]= {0};
 	
 	ULONG				IPAddress			= 0;
 	ULONG				GatewayAddress		= 0;
@@ -307,13 +306,20 @@ STDMETHODIMP CArpMgr::GetIPInfo(PNETCARD_ITEM* Items)
 	if (g_GetAdaptersInfo( pAdapterInfo, &ulAdapterInfoSize) == ERROR_BUFFER_OVERFLOW) 
 	{
 		pAdapterInfo = (IP_ADAPTER_INFO *) malloc (ulAdapterInfoSize);
+		
+		if (!pAdapterInfo)
+		{
+			return S_FALSE;
+		}
+
+		ZeroMemory(pAdapterInfo,sizeof(IP_ADAPTER_INFO));
 
 		dwRet = g_GetAdaptersInfo(pAdapterInfo,&ulAdapterInfoSize);
 
 		if(dwRet == ERROR_SUCCESS)
 		{
 			pAdapter = pAdapterInfo;
-
+		
 			while(pAdapter)
 			{
 				//跳过广域网接口和本机环回接口和其他未知接口
@@ -323,7 +329,7 @@ STDMETHODIMP CArpMgr::GetIPInfo(PNETCARD_ITEM* Items)
 					pAdapter = pAdapter->Next;
 					continue;
 				}
-
+				
 				pIPAddressList = &pAdapter->IpAddressList;
 				pGatewayList   = &pAdapter->GatewayList;
 
@@ -348,13 +354,15 @@ STDMETHODIMP CArpMgr::GetIPInfo(PNETCARD_ITEM* Items)
 
 							//本地IP地址
 							memcpy(pNetcardItem->IPAddress,&IPAddress,4);
+
 							//本地Mac地址
 							memcpy(pNetcardItem->IPAddressMac,pAdapter->Address,6);
 
-							if( pGatewayList												  &&
+							if( pGatewayList &&
 								memcmp(Empty_Gateway,pGatewayList->IpAddress.String,4*4) != 0 )
 							{
 								GatewayAddress = inet_addr((const char*)pGatewayList->IpAddress.String);
+
 								//网关地址
 								memcpy(pNetcardItem->GatewayIP,&GatewayAddress,4);
 							}
@@ -365,11 +373,16 @@ STDMETHODIMP CArpMgr::GetIPInfo(PNETCARD_ITEM* Items)
 					}
 
 					pIPAddressList = pIPAddressList->Next;
-					pGatewayList   = pGatewayList->Next;
+					
+					// Perhaps multiple IP addresses responsing to the same gateway
+					//
+					if (pGatewayList)
+					{
+						pGatewayList = pGatewayList->Next;
+					}
 				}
 				pAdapter = pAdapter->Next;
 			}
-
 		}
 	}
 

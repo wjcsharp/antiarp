@@ -217,13 +217,22 @@ BOOL CWonArpFWApp::InitInstance()
 		return FALSE;
 	}
 
+#if !DBGTestGUI
+
 	//检测驱动是否存在
 	if(g_ArpMgr->Open() != S_OK)
 	{
 		MessageBox(NULL,TEXT("防火墙功能模块丢失，请重新安装本程序"),
-						TEXT("玩火 AntiARP"),MB_OK | MB_ICONERROR);
+			TEXT("玩火 AntiARP"),MB_OK | MB_ICONERROR);
 		return FALSE;
 	}
+
+#else
+
+	MessageBox(NULL,TEXT("防火墙功能模块未加载，仅供测试!!"),
+		TEXT("界面测试!!"),MB_OK | MB_ICONERROR);
+
+#endif
 
 	// 网关检测成功
 	CWonArpFWDlg dlg;
