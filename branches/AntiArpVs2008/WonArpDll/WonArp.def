@@ -1,7 +1,0 @@
-
-LIBRARY "WonArp.dll"
-
-EXPORTS
-	GetClassObject  @1 NONAME
-
-VERSION 5,0
