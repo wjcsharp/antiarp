@@ -94,6 +94,7 @@ BEGIN_MESSAGE_MAP(CLogDlg, CDialog)
 	ON_WM_CTLCOLOR()
 	ON_BN_CLICKED(IDC_CLEAR_LOGVIEW, OnClearLogview)
 	//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_LOOK_LOG_FILE, &CLogDlg::OnBnClickedLookLogFile)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -659,3 +660,8 @@ void CLogDlg::InsertLog(TCHAR*	LogTime,
 
 }
 
+
+void CLogDlg::OnBnClickedLookLogFile()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}

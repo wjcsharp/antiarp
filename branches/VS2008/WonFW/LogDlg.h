@@ -82,6 +82,8 @@ private:
 
 	HANDLE					m_h_query_name_event;
 
+public:
+	afx_msg void OnBnClickedLookLogFile();
 };
 
 //{{AFX_INSERT_LOCATION}}

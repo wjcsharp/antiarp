@@ -52,6 +52,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	HBRUSH		m_back_brush;
+public:
+	afx_msg void OnBnClickedImportConfig();
+	afx_msg void OnBnClickedExportConfig();
 };
 
 //{{AFX_INSERT_LOCATION}}
