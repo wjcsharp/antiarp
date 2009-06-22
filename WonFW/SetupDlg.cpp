@@ -50,6 +50,8 @@ BEGIN_MESSAGE_MAP(CSetupDlg, CDialog)
 	ON_BN_CLICKED(IDC_ANTI_USE, OnAntiUse)
 	ON_BN_CLICKED(IDC_SETUP_USE, OnSetupUse)
 	//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_IMPORT_CONFIG, &CSetupDlg::OnBnClickedImportConfig)
+	ON_BN_CLICKED(IDC_EXPORT_CONFIG, &CSetupDlg::OnBnClickedExportConfig)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -113,4 +115,14 @@ BOOL CSetupDlg::OnInitDialog()
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void CSetupDlg::OnBnClickedImportConfig()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+void CSetupDlg::OnBnClickedExportConfig()
+{
+	// TODO: 在此添加控件通知处理程序代码
 }

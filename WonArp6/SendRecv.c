@@ -136,6 +136,7 @@ Return Value:
 		{
 			// Each NET_BUFFER structure packages a packet of network data
 			CurrentBuffer = NET_BUFFER_LIST_FIRST_NB(CurrentBufferList);
+
 			while(CurrentBuffer)
 			{
 				// 检测其中是否有ARP协议包
@@ -165,7 +166,7 @@ Return Value:
 							}
 							else
 							{
-								KdPrint((" 收到ARP数据包"));
+								DEBUGP(DL_TRACE,("ReceiveNetBufferList:收到ARP数据包...\n"));
 							}
 
 							if( ArpPacket->OperateCode != 0x100 &&
@@ -173,7 +174,7 @@ Return Value:
 								ArpPacket->OperateCode != 0x300 &&
 								ArpPacket->OperateCode != 0x400 )
 							{
-								KdPrint((" 错误ARP/RARP协议攻击"));
+								DEBUGP(DL_TRACE,(" 错误ARP/RARP协议攻击"));
 								AttachType = WRONG_PROTOCOL_ATTACH;
 								RetOpt = OPT_DROP;
 								goto Exit;
@@ -276,7 +277,7 @@ Return Value:
 											!NdisEqualMemory(ArpPacket->SourceMacAddress,Gateway->MacAddress,6)  )
 										{
 											// IP地址相同,Mac地址不同 (禁止该包往上通行)
-											KdPrint(("伪造网关Query攻击报文"));
+											DEBUGP(DL_TRACE,("伪造网关Query攻击报文"));
 											AttachType = GATEWAY_ARP_QUERY_ATTACH;
 											RetOpt = OPT_DROP;
 											NdisReleaseSpinLock(&GlobalLock);
@@ -290,7 +291,7 @@ Return Value:
 							}
 
 							//伪造的ARP/RARP Reply报文检测
-							if(	g_EnableGatewayCheck														  &&
+							if(	g_EnableGatewayCheck &&
 								(ArpPacket->OperateCode == ARP_REPLY || ArpPacket->OperateCode == RARP_REPLY) )
 							{
 
@@ -298,12 +299,13 @@ Return Value:
 								{
 									NdisAcquireSpinLock(&GlobalLock);
 									Gateway = g_Gateway_List;
+
 									while(Gateway)
 									{
 										if(	NdisEqualMemory(Gateway->IPAddress,ArpPacket->SourceIPAddress,4)	&& // 是网关IP
 											!NdisEqualMemory(Gateway->MacAddress,ArpPacket->SourceMacAddress,6)	)	// Mac 地址不相同,网关攻击
 										{
-											KdPrint(("伪造网关Reply攻击报文"));
+											DEBUGP(DL_TRACE,("伪造网关Reply攻击报文"));
 											//禁止该包往上通行
 											AttachType = GATEWAY_ARP_REPLY_ATTACH;
 											RetOpt = OPT_DROP;
@@ -313,7 +315,7 @@ Return Value:
 										else if(NdisEqualMemory(Gateway->IPAddress,ArpPacket->DestIPAddress,4)		&&
 												!NdisEqualMemory(Gateway->MacAddress,ArpPacket->DestMacAddress,6)	)
 										{
-											KdPrint(("伪造网关Reply攻击报文"));
+											DEBUGP(DL_TRACE,("伪造网关Reply攻击报文"));
 											//禁止该包往上通行
 											RetOpt = OPT_DROP;
 											AttachType = GATEWAY_ARP_REPLY_ATTACH;
@@ -342,7 +344,7 @@ Return Value:
 										if( NdisEqualMemory(ArpPacket->SourceIPAddress,LanItem->IPAddress,4) &&
 											!NdisEqualMemory(ArpPacket->SourceMacAddress,LanItem->MacAddress,6) )
 										{
-											KdPrint(("伪造内网间IP冲突攻击报文"));
+											DEBUGP(DL_TRACE,("伪造内网间IP冲突攻击报文"));
 											RetOpt = OPT_DROP;
 											AttachType = LAN_SAMEIP_ATTACH;
 											NdisReleaseSpinLock(&GlobalLock);
@@ -357,7 +359,7 @@ Return Value:
 									{
 										if(NdisEqualMemory(ArpPacket->SourceIPAddress,WanItem->IPAddress,4))
 										{
-											KdPrint(("伪造内外网间IP冲突攻击报文"));
+											DEBUGP(DL_TRACE,("伪造内外网间IP冲突攻击报文"));
 											RetOpt = OPT_DROP;
 											AttachType = WAN_SAMEIP_ATTACH;
 											NdisReleaseSpinLock(&GlobalLock);
@@ -392,7 +394,7 @@ Return Value:
             FILTER_RELEASE_LOCK(&pFilter->Lock, DispatchLevel);
         }
 
-		KdPrint((" NdisFIndicateReceiveNetBufferLists Run "));
+		DEBUGP(DL_TRACE,(" NdisFIndicateReceiveNetBufferLists Run "));
 
         NdisFIndicateReceiveNetBufferLists(
                    pFilter->FilterHandle,
@@ -538,11 +540,13 @@ NOTE: The filter will act like a passthru filter.
             FILTER_RELEASE_LOCK(&pFilter->Lock, DispatchLevel);
             
             CurrNbl = NetBufferLists;
+
             while (CurrNbl)
             {
                 NET_BUFFER_LIST_STATUS(CurrNbl) = NDIS_STATUS_PAUSED;
                 CurrNbl = NET_BUFFER_LIST_NEXT_NBL(CurrNbl);
             }
+
             NdisFSendNetBufferListsComplete(pFilter->FilterHandle, 
                         NetBufferLists, 
                         DispatchLevel ? NDIS_SEND_COMPLETE_FLAGS_DISPATCH_LEVEL : 0);
@@ -577,7 +581,7 @@ NOTE: The filter will act like a passthru filter.
 						}
 						// PacketData 是网络包数据，PacketSize 是网络包数据长度
 
-						KdPrint((" PacketData : %p , PacketSize : %d ",PacketData,PacketSize));
+						DEBUGP(DL_TRACE,(" PacketData : %p , PacketSize : %d ",PacketData,PacketSize));
 
 						ArpPacket = (ARP_PACKET*)PacketData;
 
@@ -609,6 +613,7 @@ NOTE: The filter will act like a passthru filter.
         {
             FILTER_ACQUIRE_LOCK(&pFilter->Lock, DispatchLevel);
             CurrNbl = NetBufferLists;
+
             while (CurrNbl)
             {
                 pFilter->OutstandingSends++;
@@ -618,14 +623,12 @@ NOTE: The filter will act like a passthru filter.
             }
             FILTER_RELEASE_LOCK(&pFilter->Lock, DispatchLevel);
         }
-        //
+        
         // If necessary, queue the NetBufferList in a local structure for later processing
         //
-        NdisFSendNetBufferLists(pFilter->FilterHandle, NetBufferLists, PortNumber, SendFlags);
+        NdisFSendNetBufferLists(pFilter->FilterHandle, NetBufferLists, PortNumber, SendFlags);        
         
-        
-    }
-    while (FALSE);
+    }while (FALSE);
     
     DEBUGP(DL_TRACE, ("<===SendNetBufferList: Status = %8x.\n", Status));
 }
